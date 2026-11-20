@@ -1,4 +1,4 @@
-# CricScore 🏏
+# Jagat Cricket 🏏
 
 A personal cricket batting tracker for Android. You enter each innings by hand, and the app works out your career stats.
 Everything is stored **on your phone** (SQLite). There is no backend, no account and no internet needed.
@@ -12,7 +12,7 @@ Everything is stored **on your phone** (SQLite). There is no backend, no account
 
 ## Get the APK
 1. On GitHub, open **Actions** and then the latest successful **Build APK** run.
-2. Download the **cricscore-apk** artifact (a zip) and unzip it to get `cricscore.apk`.
+2. Download the **jagat-cricket-apk** artifact (a zip) and unzip it to get `jagat-cricket.apk`.
 3. Copy the APK to your phone and open it. The first time, Android asks you to allow installs from that app.
 
 > The APK is signed with the default debug key, which is fine for installing it yourself. To publish on the Play Store
