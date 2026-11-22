@@ -1,0 +1,72 @@
+name: Build Water Reminder APK
+
+on:
+  push:
+    branches: ['**']
+    paths:
+      - 'water-reminder/**'
+      - '.github/workflows/build-water-apk.yml'
+  pull_request:
+    paths:
+      - 'water-reminder/**'
+  workflow_dispatch:
+
+concurrency:
+  group: build-water-apk-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: water-reminder
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: water-reminder/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+
+  apk:
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: water-reminder/package-lock.json
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - run: npm ci
+
+      # Generates the native android/ project from app.json (it is not committed).
+      - run: npx expo prebuild --platform android --no-install
+
+      - name: Build release APK
+        working-directory: water-reminder/android
+        run: ./gradlew assembleRelease --no-daemon -PreactNativeArchitectures=arm64-v8a,armeabi-v7a
+
+      - name: Rename APK
+        run: mv android/app/build/outputs/apk/release/app-release.apk water-reminder.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: water-reminder-apk
+          path: water-reminder/water-reminder.apk
+          retention-days: 30

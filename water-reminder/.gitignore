@@ -1,0 +1,8 @@
+node_modules/
+.expo/
+dist/
+expo-env.d.ts
+# generated native folders (Continuous Native Generation)
+/ios
+/android
+*.apk
