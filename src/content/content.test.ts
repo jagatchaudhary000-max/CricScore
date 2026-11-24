@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { GUIDE_TOPICS, getTopic } from './index';
+import { GUIDE_TOPICS, getTopic, itemVideoQuery, sectionKey, youtubeSearchUrl } from './index';
+import { SECTION_VIDEOS } from './videos';
 
 describe('guide content', () => {
   it('has unique topic ids that can be looked up', () => {
@@ -33,5 +34,26 @@ describe('guide content', () => {
     const dismissals = getTopic('rules')!.sections.find((s) => s.chip === 'Dismissals')!;
     const block = dismissals.blocks.find((b) => b.kind === 'items');
     expect(block && block.kind === 'items' && block.items.length).toBe(10);
+  });
+});
+
+describe('guide videos', () => {
+  it('gives every section at least one video, with no unused video entries', () => {
+    const used = new Set<string>();
+    for (const t of GUIDE_TOPICS) {
+      for (const s of t.sections) {
+        const key = sectionKey(t.id, s);
+        used.add(key);
+        expect(s.videos?.length, `no videos for ${key}`).toBeGreaterThan(0);
+        for (const v of s.videos!) expect(v.title.trim() && v.query.trim()).toBeTruthy();
+      }
+    }
+    expect(Object.keys(SECTION_VIDEOS).filter((k) => !used.has(k))).toEqual([]);
+  });
+
+  it('builds clean item search queries and safe URLs', () => {
+    expect(itemVideoQuery('1. Hip openers ("open the gate")', 'exercise')).toBe('Hip openers exercise');
+    expect(itemVideoQuery('Nimbu pani (homemade energy drink)', 'x')).toBe('Nimbu pani x');
+    expect(youtubeSearchUrl('LBW & DRS')).toBe('https://www.youtube.com/results?search_query=LBW%20%26%20DRS');
   });
 });

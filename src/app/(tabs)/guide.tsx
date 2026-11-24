@@ -20,6 +20,10 @@ export default function GuideScreen() {
           <View style={{ flex: 1 }}>
             <Text style={styles.title}>{t.title}</Text>
             <Text style={styles.summary}>{t.summary}</Text>
+            <Text style={styles.videoCount}>
+              ▶ {t.sections.reduce((n, s) => n + (s.videos?.length ?? 0), 0)} videos
+              {t.itemVideoSuffix ? ' + one on every card' : ''}
+            </Text>
           </View>
           <Text style={styles.chevron}>›</Text>
         </Pressable>
@@ -52,5 +56,6 @@ const styles = StyleSheet.create({
   emoji: { fontSize: 26 },
   title: { fontSize: 16, fontWeight: '700', color: colors.text },
   summary: { fontSize: 13, color: colors.muted, marginTop: 2, lineHeight: 18 },
+  videoCount: { fontSize: 12, color: '#D62C1F', fontWeight: '600', marginTop: 4 },
   chevron: { fontSize: 24, color: colors.muted },
 });

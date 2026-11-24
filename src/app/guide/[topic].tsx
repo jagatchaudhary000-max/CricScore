@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, Text, View, type ScrollViewInstance } from 'rea
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { getTopic } from '../../content';
 import { GuideBlockView } from '../../components/GuideBlocks';
+import { VideoLinks } from '../../components/VideoLinks';
 import { Card, Chip, EmptyState } from '../../components/ui';
 import { colors, spacing } from '../../theme';
 
@@ -42,14 +43,16 @@ export default function GuideTopicScreen() {
         {selected === null && (
           <Text style={styles.summary}>
             {topic.emoji} {topic.summary}
+            {'\n'}📺 Every section has videos. Tap one to watch it on YouTube (needs internet).
           </Text>
         )}
         {sections.map(({ s, i }) => (
           <Card key={i} style={{ gap: spacing.md }}>
             <Text style={styles.sectionTitle}>{s.title}</Text>
             {s.blocks.map((b, j) => (
-              <GuideBlockView key={j} block={b} />
+              <GuideBlockView key={j} block={b} itemVideoSuffix={topic.itemVideoSuffix} />
             ))}
+            <VideoLinks videos={s.videos ?? []} />
           </Card>
         ))}
       </ScrollView>

@@ -10,7 +10,8 @@ Everything is stored **on your phone** (SQLite). There is no backend, no account
 - **Add:** runs, balls, 4s, 6s, out or not out, how out, date, opponent, venue, format and notes. The form checks what you enter.
 - **Guide:** warm-up stretches for batting, bowling and fielding, food and drinks before you play, catching and
   throwing drills, the rules of cricket (extras, all 10 dismissals, powerplays, umpire signals), equipment and safety,
-  and a glossary of fielding positions and terms. It all works offline.
+  and a glossary of fielding positions and terms. It all works offline. Every section links to YouTube videos (internet
+  needed), and each exercise, drill, rule and term has its own ▶ Video button.
 - **Settings:** export a JSON backup through the share sheet, import a backup (add to your matches or replace them), delete all data.
 
 ## Get the APK

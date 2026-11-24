@@ -11,6 +11,8 @@ export interface GuideSection {
   /** Short label shown in the section's filter chip, e.g. "Batting". Defaults to the title. */
   chip?: string;
   blocks: GuideBlock[];
+  /** YouTube links shown under the section (filled in from videos.ts). */
+  videos?: { title: string; query: string }[];
 }
 
 export interface GuideTopic {
@@ -19,4 +21,6 @@ export interface GuideTopic {
   title: string;
   summary: string;
   sections: GuideSection[];
+  /** When set, every card in an `items` block gets a "▶ Video" button searching "<name> <suffix>". */
+  itemVideoSuffix?: string;
 }

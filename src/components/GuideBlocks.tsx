@@ -1,8 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
-import type { GuideBlock } from '../content';
+import { itemVideoQuery, type GuideBlock } from '../content';
+import { VideoPill } from './VideoLinks';
 import { colors, radius, spacing } from '../theme';
 
-export function GuideBlockView({ block }: { block: GuideBlock }) {
+/** `itemVideoSuffix`: when set, each item card gets a "▶ Video" button. */
+export function GuideBlockView({ block, itemVideoSuffix }: { block: GuideBlock; itemVideoSuffix?: string }) {
   switch (block.kind) {
     case 'text':
       return <Text style={styles.text}>{block.text}</Text>;
@@ -27,6 +29,7 @@ export function GuideBlockView({ block }: { block: GuideBlock }) {
                 {item.dose ? <Text style={styles.dose}>{item.dose}</Text> : null}
               </View>
               <Text style={styles.itemHow}>{item.how}</Text>
+              {itemVideoSuffix ? <VideoPill query={itemVideoQuery(item.name, itemVideoSuffix)} /> : null}
             </View>
           ))}
         </View>
