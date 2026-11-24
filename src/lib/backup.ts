@@ -22,7 +22,7 @@ export interface ParsedBackup {
   skipped: number;
 }
 
-/** Parses a backup file. Throws with a user-readable message if it isn't a Jagat Cricket backup. */
+/** Parses a backup file. Throws with a user-readable message if it isn't a 11 Wolves backup. */
 export function parseBackup(text: string): ParsedBackup {
   let data: unknown;
   try {
@@ -32,7 +32,7 @@ export function parseBackup(text: string): ParsedBackup {
   }
   const d = data as { app?: unknown; matches?: unknown };
   if (typeof d !== 'object' || d === null || d.app !== BACKUP_APP_ID || !Array.isArray(d.matches)) {
-    throw new Error('This is not a Jagat Cricket backup file.');
+    throw new Error('This is not a 11 Wolves backup file.');
   }
   const matches: MatchInput[] = [];
   let skipped = 0;

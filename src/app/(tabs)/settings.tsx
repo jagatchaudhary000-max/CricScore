@@ -18,7 +18,7 @@ export default function SettingsScreen() {
     setBusy(true);
     try {
       const matches = await listMatches(db);
-      const file = new File(Paths.cache, `jagat-cricket-backup-${todayIso()}.json`);
+      const file = new File(Paths.cache, `11-wolves-backup-${todayIso()}.json`);
       if (file.exists) file.delete();
       file.create();
       await file.write(buildBackup(matches));
@@ -26,7 +26,7 @@ export default function SettingsScreen() {
         Alert.alert('Sharing not available', 'This device cannot share files.');
         return;
       }
-      await Sharing.shareAsync(file.uri, { mimeType: 'application/json', dialogTitle: 'Save Jagat Cricket backup' });
+      await Sharing.shareAsync(file.uri, { mimeType: 'application/json', dialogTitle: 'Save 11 Wolves backup' });
     } catch (e) {
       Alert.alert('Export failed', e instanceof Error ? e.message : String(e));
     } finally {
@@ -97,7 +97,7 @@ export default function SettingsScreen() {
         <Button label="Delete all matches" variant="danger" onPress={clearAll} disabled={busy} />
       </Card>
 
-      <Text style={styles.version}>Jagat Cricket v{Constants.expoConfig?.version ?? '1.0.0'}</Text>
+      <Text style={styles.version}>11 Wolves v{Constants.expoConfig?.version ?? '1.0.0'}</Text>
     </ScrollView>
   );
 }

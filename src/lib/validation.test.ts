@@ -52,7 +52,7 @@ describe('backup', () => {
   it('skips invalid entries and rejects non-backup files', () => {
     const text = JSON.stringify({ app: 'cricscore', version: 1, matches: [base, { runs: 'x' }] });
     expect(parseBackup(text)).toEqual({ matches: [base], skipped: 1 });
-    expect(() => parseBackup('{"foo":1}')).toThrow('not a Jagat Cricket backup');
+    expect(() => parseBackup('{"foo":1}')).toThrow('not a 11 Wolves backup');
     expect(() => parseBackup('nope')).toThrow('not valid JSON');
   });
 });

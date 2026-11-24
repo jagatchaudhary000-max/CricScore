@@ -104,7 +104,7 @@ export const safety: GuideTopic = {
             'White or coloured kit as required, plus a spare shirt',
             'Water bottle (1–2 L), ORS sachets, banana or dates',
             'Sunscreen, small towel, basic first aid (tape, plasters)',
-            'Phone, so you can record your innings in Jagat Cricket afterwards',
+            'Phone, so you can record your innings in 11 Wolves afterwards',
           ],
         },
       ],
