@@ -23,6 +23,7 @@ export default function TabsLayout() {
       <Tabs.Screen name="index" options={{ title: 'Jagat Cricket', tabBarLabel: 'Home', tabBarIcon: icon('🏠') }} />
       <Tabs.Screen name="matches" options={{ title: 'My matches', tabBarLabel: 'Matches', tabBarIcon: icon('📋') }} />
       <Tabs.Screen name="add" options={{ title: 'Add match', tabBarLabel: 'Add', tabBarIcon: icon('➕') }} />
+      <Tabs.Screen name="guide" options={{ title: 'Cricket guide', tabBarLabel: 'Guide', tabBarIcon: icon('📘') }} />
       <Tabs.Screen name="settings" options={{ title: 'Settings', tabBarLabel: 'Settings', tabBarIcon: icon('⚙️') }} />
     </Tabs>
   );

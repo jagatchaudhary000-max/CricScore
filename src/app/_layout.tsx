@@ -30,6 +30,7 @@ export default function RootLayout() {
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="match/[id]/index" options={{ title: 'Match' }} />
           <Stack.Screen name="match/[id]/edit" options={{ title: 'Edit match' }} />
+          <Stack.Screen name="guide/[topic]" options={{ title: 'Guide' }} />
         </Stack>
       </SQLiteProvider>
     </Suspense>

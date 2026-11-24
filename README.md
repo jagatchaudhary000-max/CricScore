@@ -8,6 +8,9 @@ Everything is stored **on your phone** (SQLite). There is no backend, no account
   highest score, 50s/100s, ducks, not-outs, 4s/6s, a chart of how you got out, and your last 10 scores.
 - **Matches:** every innings, newest first, with search and a format filter. Tap one to view, edit or delete it.
 - **Add:** runs, balls, 4s, 6s, out or not out, how out, date, opponent, venue, format and notes. The form checks what you enter.
+- **Guide:** warm-up stretches for batting, bowling and fielding, food and drinks before you play, catching and
+  throwing drills, the rules of cricket (extras, all 10 dismissals, powerplays, umpire signals), equipment and safety,
+  and a glossary of fielding positions and terms. It all works offline.
 - **Settings:** export a JSON backup through the share sheet, import a backup (add to your matches or replace them), delete all data.
 
 ## Get the APK
@@ -30,6 +33,7 @@ npm run android     # build and run on a connected device or emulator (needs the
 ```
 src/app/            screens (Expo Router): (tabs)/index, matches, add, settings; match/[id]/index, edit
 src/db/             SQLite schema/migrations and match queries
+src/content/        Guide topics (plain TypeScript data; add or edit text here)
 src/lib/            stats, validation, backup and formatting (pure TypeScript, unit-tested)
 src/components/     UI building blocks and charts
 .github/workflows/  build-apk.yml: tests, then builds the APK
